@@ -62,7 +62,6 @@ void free_stack(stack_t **stack);
 /*......................str_tocks.c.....................  */
 
 char **sepstr(char *str, char *delims);
-int _delim(char ch, char *delims);
 int catch_word_count(char *str, char *delims);
 int catch_word_len(char *str, char *delims);
 char *catch_next_word(char *str, char *delims);
@@ -71,6 +70,7 @@ char *catch_next_word(char *str, char *delims);
 
 char *catch_int(int num);
 unsigned int _abs(int);
+int _delim(char ch, char *delims);
 int catch_nbs_len(unsigned int nbs, unsigned int base);
 void load_nbs_bf(unsigned int nbs, unsigned int base, char *buff, int buff_size);
 
