@@ -118,4 +118,4 @@ int div_err(unsigned int line_number);
 int pchar_err(unsigned int line_number, char *flag);
 int brief_stack_err(unsigned int line_number, char *opr);
 
-#endif /* __MONTY_H__ */
+#endif

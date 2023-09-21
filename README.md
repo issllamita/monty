@@ -2,9 +2,7 @@
 
 ## Introducion :snake:
 
-This is a Monty Bytecodes Interpreter wirtten in the C language and is compliant with `ISO90`, `ISO99`, & `ISO11`. This interpreter is designed to read Mont
-
-y bytecodes files with any extension (though .m is recommended) and execute the contained opcodes.
+This is a Monty Bytecodes Interpreter wirtten in the C language and is compliant with `ISO90`, `ISO99`, & `ISO11`. This interpreter is designed to read Monty bytecodes files with any extension (though .m is recommended) and execute the contained opcodes.
 
 ## Key Features:
 
