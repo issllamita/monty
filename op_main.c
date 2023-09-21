@@ -11,7 +11,7 @@ char **op_toks = NULL;
  * @argv: pointer to an array of char pointers to arguments
  * Return: (EXIT_SUCCESS) on success (EXIT_FAILURE) on error
  */
-int main(int argc, char  *argv[])
+int main(int argc, char **argv)
 {
 	FILE *op_cipher = NULL;
 	int exit_code = EXIT_SUCCESS;
