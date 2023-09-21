@@ -49,7 +49,7 @@ typedef struct instruction_s
 
 int exec_monty(FILE *op_script);
 unsigned int tok_arr_len(void);
-int is_empty_line(char *line, char *delims);
+int empty_line(char *line, char *delims);
 char **strtow(char *str, char *delims);
 void free_toks(void);
 
@@ -57,7 +57,7 @@ void free_toks(void);
 
 int init_stack(stack_t **stack);
 int check_mode(stack_t *stack);
-void setop_tok_err(int err_code);
+void set_tok_err(int err_code);
 void free_stack(stack_t **stack);
 char *get_int(int n);
 
@@ -109,9 +109,9 @@ void _queue(stack_t **stack, unsigned int line_number);
 
 int usg_err(void);
 int noint_err(unsigned int line_number);
-int malc_err(void);
+int malloc_err(void);
 int fl_open_err(char *filename);
-int unkn_opc_err(char *opcode, unsigned int line_number);
+int unknown_opc_err(char *opcode, unsigned int line_number);
 
 /*......................... op_err2.c.................... */
 
