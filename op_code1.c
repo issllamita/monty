@@ -7,22 +7,15 @@
  */
 void _push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp, *new;
+	stack_t *temp, *new = malloc(sizeof(stack_t));
 	int j;
 
-	new = malloc(sizeof(stack_t));
-	if (new == NULL)
-	{
-		set_tok_err(malloc_err());
-		return;
-	}
-
+	(new == NULL) ? (set_tok_err(malloc_err()), return) : /*  */;
 	if (op_toks[1] == NULL)
 	{
 		set_tok_err(noint_err(line_number));
 		return;
 	}
-
 	for (j = 0; op_toks[1][j]; j++)
 	{
 		if (op_toks[1][j] == '-' && j == 0)
@@ -34,7 +27,6 @@ void _push(stack_t **stack, unsigned int line_number)
 		}
 	}
 	new->n = atoi(op_toks[1]);
-
 	if (check_mode(*stack) == STACK)
 	{
 		temp = (*stack)->next;
