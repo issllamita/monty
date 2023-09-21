@@ -10,7 +10,11 @@ void _push(stack_t **stack, unsigned int line_number)
 	stack_t *temp, *new = malloc(sizeof(stack_t));
 	int j;
 
-	(new == NULL) ? (set_tok_err(malloc_err()), return) : /*  */;
+	if (new == NULL)
+	{
+		set_tok_err(malloc_err());
+		return;
+	}
 	if (op_toks[1] == NULL)
 	{
 		set_tok_err(noint_err(line_number));
