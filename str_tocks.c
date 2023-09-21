@@ -1,9 +1,11 @@
+#include "monty.h"
+#include <stdlib.h>
+
+
 /**
  * sepstr - takes a string and seperates its words
- *
  * @str: string to seperate into words
  * @delims: delimitors to use to delimit words
- *
  * Return: 2D array of pointers to each word
  */
 
@@ -14,7 +16,7 @@ char **sepstr(char *str, char *delims)
 
 	if (str == NULL || !*str)
 		return (NULL);
-	wc = get_word_count(str, delims);
+	wc = catch_word_count(str, delims);
 
 
 	if (wc == 0)
@@ -24,10 +26,10 @@ char **sepstr(char *str, char *delims)
 		return (NULL);
 	while (i < wc)
 	{
-		wordLen = get_word_length(str, delims);
+		wordLen = catch_word_len(str, delims);
 		if (is_delim(*str, delims))
 		{
-			str = get_next_word(str, delims);
+			str = catch_next_word(str, delims);
 		}
 		words[i] = malloc((wordLen + 1) * sizeof(char));
 		if (words[i] == NULL)
@@ -46,24 +48,23 @@ char **sepstr(char *str, char *delims)
 			words[i][n] = *(str + n);
 			n++;
 		}
-		words[i][n] = '\0'; /* set end of str */
-		str = get_next_word(str, delims);
+		words[i][n] = '\0'; 
+		str = catch_next_word(str, delims);
 		i++;
 	}
-	words[i] = NULL; /* last element is null for iteration */
+	words[i] = NULL;
 	return (words);
 }
 
 /**
- * get_word_count - gets the word count of a string
- *
+ * catch_word_count - takes the word count of a string
  * @str: string to get word count from
  * @delims: delimitors to use to delimit words
  *
  * Return: the word count of the string
  */
 
-int get_word_count(char *str, char *delims)
+int catch_word_count(char *str, char *delims)
 {
 	int wc = 0, pending = 1, i = 0;
 
@@ -82,15 +83,14 @@ int get_word_count(char *str, char *delims)
 }
 
 /**
- * get_word_length - gets the word length of cur word in str
- *
+ * catch_word_len - takes the word length of cur word in str
  * @str: string to get word length from current word
  * @delims: delimitors to use to delimit words
  *
  * Return: word length of current word
  */
 
-int get_word_length(char *str, char *delims)
+int catch_word_len(char *str, char *delims)
 {
 	int wLen = 0, pending = 1, i = 0;
 
@@ -110,15 +110,14 @@ int get_word_length(char *str, char *delims)
 }
 
 /**
- * get_next_word - gets the next word in a string
- *
+ * catch_next_word - gets the next word in a string
  * @str: string to get next word from
  * @delims: delimitors to use to delimit words
  *
  * Return: pointer to first char of next word
  */
 
-char *get_next_word(char *str, char *delims)
+char *catch_next_word(char *str, char *delims)
 {
 	int pending = 0;
 	int i = 0;

@@ -47,7 +47,7 @@ typedef struct instruction_s
 
 /*.................... exec_monty.c...................... */
 
-int exec_monty(FILE *op_script);
+int exec_monty(FILE *op_cipher);
 unsigned int tok_arr_len(void);
 int empty_line(char *line, char *delims);
 void free_toks(void);
@@ -116,7 +116,7 @@ int unknown_opc_err(char *opcode, unsigned int line_number);
 int pop_err(unsigned int line_number);
 int pint_err(unsigned int line_number);
 int div_err(unsigned int line_number);
-int pchar_err(unsigned int line_number, char *message);
-int brief_stack_err(unsigned int line_number, char *op);
+int pchar_err(unsigned int line_number, char *flag);
+int brief_stack_err(unsigned int line_number, char *opc);
 
 #endif /* __MONTY_H__ */

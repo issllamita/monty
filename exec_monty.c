@@ -3,11 +3,11 @@
 
 /**
  * exec_monty - Primary function to execute a Monty bytecodes script.
- * @script_fd: File descriptor for an open Monty bytecodes script.
+ * @op_cipher: File descriptor for an open Monty bytecodes script.
  *
  * Return: EXIT_SUCCESS on success, respective error code on failure.
  */
-int exec_monty(FILE *script_fd)
+int exec_monty(FILE *op_cipher)
 {
 	stack_t *stack = NULL;
 	char *line = NULL;
@@ -21,28 +21,28 @@ int exec_monty(FILE *script_fd)
 	while (getline(&line, &len, script_fd) != -1)
 	{
 		line_number++;
-		op_toks = strtow(line, DELIMS);
+		op_toks = sepstr(line, DELIMS);
 		if (op_toks == NULL)
 		{
-			if (is_empty_line(line, DELIMS))
+			if (empty_line(line, DELIMS))
 				continue;
 			free_stack(&stack);
-			return (malloc_error());
+			return (malloc_err());
 		}
-		else if (op_toks[0][0] == '#') /* comment line */
+		else if (op_toks[0][0] == '#')
 		{
-			free_tokens();
+			free_toks();
 			continue;
 		}
 		op_func = get_op_func(op_toks[0]);
 		if (op_func == NULL)
 		{
 			free_stack(&stack);
-			exit_status = unknown_op_error(op_toks[0], line_number);
-			free_tokens();
+			exit_status = unknown_op_err(op_toks[0], line_number);
+			free_toks();
 			break;
 		}
-		prev_tok_len = token_arr_len();
+		prev_tok_len = tok_arr_len();
 		op_func(&stack, line_number);
 		if (token_arr_len() != prev_tok_len)
 		{
@@ -50,17 +50,17 @@ int exec_monty(FILE *script_fd)
 				exit_status = atoi(op_toks[prev_tok_len]);
 			else
 				exit_status = EXIT_FAILURE;
-			free_tokens();
+			free_toks();
 			break;
 		}
-		free_tokens();
+		free_toks();
 	}
 	free_stack(&stack);
 
 	if (line && *line == 0)
 	{
 		free(line);
-		return (malloc_error());
+		return (malloc_err());
 	}
 
 	free(line);
@@ -68,11 +68,10 @@ int exec_monty(FILE *script_fd)
 }
 
 /**
- * token_arr_len - Gets the length of current op_toks.
- *
+ * tok_arr_len - Gets the length of current op_toks.
  * Return: Length of current op_toks (as int).
  */
-unsigned int token_arr_len(void)
+unsigned int tok_arr_len(void)
 {
 	unsigned int toks_len = 0;
 
@@ -82,14 +81,13 @@ unsigned int token_arr_len(void)
 }
 
 /**
- * is_empty_line - Checks if a line read from getline only contains delimiters.
+ * empty_line - Checks if a line read from getline only contains delimiters.
  * @line: A pointer to the line.
  * @delims: A string of delimiter characters.
- *
  * Return: If the line only contains delimiters - 1.
  *         Otherwise - 0.
  */
-int is_empty_line(char *line, char *delims)
+int empty_line(char *line, char *delims)
 {
 	int i, j;
 
@@ -108,9 +106,9 @@ int is_empty_line(char *line, char *delims)
 }
 
 /**
- * free_tokens - Frees the global op_toks array of strings.
+ * free_toks - Frees the global op_toks array of strings.
  */
-void free_tokens(void)
+void free_toks(void)
 {
 	size_t i = 0;
 

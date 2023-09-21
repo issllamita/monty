@@ -1,12 +1,12 @@
+#include "monty.h"
 #include <stdlib.h>
 
 /**
- * get_int - gets a character pointer to new string containing int
- * @num: number to convert to string
- *
+ * catch_int - takes a character pointer to new string containing int
+ * @num: a number to convert to string
  * Return: character pointer to newly created string. NULL if malloc fails.
  */
-char *get_int(int num)
+char *catch_int(int num)
 {
 	unsigned int temp;
 	int length = 0;
@@ -14,15 +14,15 @@ char *get_int(int num)
 	char *ret;
 
 	temp = _abs(num);
-	length = get_numbase_len(temp, 10);
+	length = catch_nbs_len(temp, 10);
 
 	if (num < 0 || num_l < 0)
-		length++; /* negative sign */
-	ret = malloc(length + 1); /* create new string */
+		length++;
+	ret = malloc(length + 1);
 	if (!ret)
 		return (NULL);
 
-	fill_numbase_buff(temp, 10, ret, length);
+	load_nbs_bf(temp, 10, ret, length);
 	if (num < 0 || num_l < 0)
 		ret[0] = '-';
 
@@ -43,15 +43,15 @@ unsigned int _abs(int i)
 }
 
 /**
- * get_numbase_len - gets length of buffer needed for an unsigned int
+ * catch_nbs_len - takes length of buffer needed for an unsigned int
  * @num: number to get length needed for
  * @base: base of number representation used by buffer
  *
  * Return: integer containing length of buffer needed (doesn't contain null bt)
  */
-int get_numbase_len(unsigned int num, unsigned int base)
+int catch_nbs_len(unsigned int num, unsigned int base)
 {
-	int len = 1; /* all numbers contain atleast one digit */
+	int len = 1;
 
 	while (num > base - 1)
 	{
@@ -62,7 +62,7 @@ int get_numbase_len(unsigned int num, unsigned int base)
 }
 
 /**
- * fill_numbase_buff - fills buffer with correct numbers up to base 36
+ * load_nbs_bf - fills buffer with correct numbers up to base 36
  * @num: number to convert to string given base
  * @base: base of number used in conversion, only works up to base 36
  * @buff: buffer to fill with result of conversion
@@ -79,8 +79,8 @@ void fill_numbase_buff(unsigned int num, unsigned int base,
 	while (i >= 0)
 	{
 		rem = num % base;
-		if (rem > 9) /* return lowercase ascii val representation */
-			buff[i] = rem + 87; /* 10 will be a, 11 = b, ... */
+		if (rem > 9)
+			buff[i] = rem + 87;
 		else
 			buff[i] = rem + '0';
 		num /= base;
