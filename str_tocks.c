@@ -53,6 +53,7 @@ char **sepstr(char *str, char *delims)
 	return (words);
 }
 
+
 /**
  * catch_word_count - takes the word count of a string
  * @str: string to get word count from

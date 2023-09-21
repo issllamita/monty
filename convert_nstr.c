@@ -43,6 +43,27 @@ unsigned int _abs(int i)
 }
 
 /**
+ * _delim - checks if stream has delimitor char
+ * @alpha: character in stream
+ * @delims: Pointer to null terminated array of delimitors
+ *
+ * Return: 1 (success) 0 (failure)
+ */
+
+int _delim(char alpha, char *delims)
+{
+	int i = 0;
+
+	while (delims[i])
+	{
+		if (delims[i] == alpha)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+/**
  * catch_nbs_len - takes length of buffer needed for an unsigned int
  * @num: number to get length needed for
  * @base: base of number representation used by buffer
