@@ -58,7 +58,6 @@ int init_stack(stack_t **stack);
 int check_mode(stack_t *stack);
 void set_tok_err(int err_code);
 void free_stack(stack_t **stack);
-char *get_int(int n);
 
 /*......................str_tocks.c.....................  */
 
