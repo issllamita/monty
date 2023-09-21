@@ -44,23 +44,6 @@ int check_mode(stack_t *stack)
 	return (2);
 }
 
-**
- * free_stack - Frees a stack_t stack.
- * @stack: A pointer to the top (stack) or
- *         bottom (queue) of a stack_t.
- */
-void free_stack(stack_t **stack)
-{
-	stack_t *tmp = *stack;
-
-	while (*stack)
-	{
-		tmp = (*stack)->next;
-		free(*stack);
-		*stack = tmp;
-	}
-}
-
 /**
  * set_op_tok_error - Sets last element of op_toks to be an error code.
  * @error_code: Integer to store as a string in op_toks.
@@ -95,3 +78,21 @@ void set_op_tok_error(int error_code)
 	free(op_toks);
 	op_toks = new_toks;
 }
+
+/**
+ * free_stack - Frees a stack_t stack.
+ * @stack: A pointer to the top (stack) or
+ *         bottom (queue) of a stack_t.
+ */
+void free_stack(stack_t **stack)
+{
+	stack_t *tmp = *stack;
+
+	while (*stack)
+	{
+		tmp = (*stack)->next;
+		free(*stack);
+		*stack = tmp;
+	}
+}
+

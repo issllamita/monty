@@ -52,7 +52,7 @@ unsigned int tok_arr_len(void);
 int empty_line(char *line, char *delims);
 void free_toks(void);
 
-/*...................... prim_inter_f1.c................. */
+/*...................... prime_inter.c................... */
 
 int init_stack(stack_t **stack);
 int check_mode(stack_t *stack);
