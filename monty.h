@@ -68,9 +68,9 @@ char *catch_next_word(char *str, char *delims);
 
 char *catch_int(int num);
 unsigned int _abs(int);
-int _delim(char ch, char *delims);
-int catch_nbs_len(unsigned int nbs, unsigned int base);
-void load_nbs_bf(unsigned int nbs, unsigned int base,
+int _delim(char alpha, char *delims);
+int catch_nbs_len(unsigned int num, unsigned int base);
+void load_nbs_bf(unsigned int num, unsigned int base,
 		char *buff, int buff_size);
 
 /*...................... op_code1.c...................... */
