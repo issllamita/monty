@@ -12,6 +12,7 @@
 #define QUEUE 1
 #define DELIMS " \n\t\a\b"
 
+extern char **op_toks;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -42,9 +43,6 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-
-
-/* ...................GLOBAL OPC TOKS.................... */
 
 extern char **op_toks;
 
