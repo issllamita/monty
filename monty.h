@@ -50,7 +50,6 @@ typedef struct instruction_s
 int exec_monty(FILE *op_script);
 unsigned int tok_arr_len(void);
 int empty_line(char *line, char *delims);
-char **strtow(char *str, char *delims);
 void free_toks(void);
 
 /*...................... prim_inter_f1.c................. */
