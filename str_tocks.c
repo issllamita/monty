@@ -1,7 +1,6 @@
 #include "monty.h"
 #include <stdlib.h>
 
-
 /**
  * sepstr - takes a string and seperates its words
  * @str: string to seperate into words
@@ -17,8 +16,6 @@ char **sepstr(char *str, char *delims)
 	if (str == NULL || !*str)
 		return (NULL);
 	wc = catch_word_count(str, delims);
-
-
 	if (wc == 0)
 		return (NULL);
 	words = malloc((wc + 1) * sizeof(char *));
@@ -27,7 +24,7 @@ char **sepstr(char *str, char *delims)
 	while (i < wc)
 	{
 		wordLen = catch_word_len(str, delims);
-		if (is_delim(*str, delims))
+		if (_delim(*str, delims))
 		{
 			str = catch_next_word(str, delims);
 		}
@@ -48,7 +45,7 @@ char **sepstr(char *str, char *delims)
 			words[i][n] = *(str + n);
 			n++;
 		}
-		words[i][n] = '\0'; 
+		words[i][n] = '\0';
 		str = catch_next_word(str, delims);
 		i++;
 	}
@@ -70,7 +67,7 @@ int catch_word_count(char *str, char *delims)
 
 	while (*(str + i))
 	{
-		if (is_delim(str[i], delims))
+		if (_delim(str[i], delims))
 			pending = 1;
 		else if (pending)
 		{
@@ -96,13 +93,13 @@ int catch_word_len(char *str, char *delims)
 
 	while (*(str + i))
 	{
-		if (is_delim(str[i], delims))
+		if (_delim(str[i], delims))
 			pending = 1;
 		else if (pending)
 		{
 			wLen++;
 		}
-		if (wLen > 0 && is_delim(str[i], delims))
+		if (wLen > 0 && _delim(str[i], delims))
 			break;
 		i++;
 	}
@@ -124,7 +121,7 @@ char *catch_next_word(char *str, char *delims)
 
 	while (*(str + i))
 	{
-		if (is_delim(str[i], delims))
+		if (_delim(str[i], delims))
 			pending = 1;
 		else if (pending)
 			break;

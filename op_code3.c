@@ -14,7 +14,7 @@ void _pchar(stack_t **stack, unsigned int line_number)
 	}
 	if ((*stack)->next->n < 0 || (*stack)->next->n > 127)
 	{
-		set_op_tok_err(pchar_err(line_number,
+		set_tok_err(pchar_err(line_number,
 					     "value out of range"));
 		return;
 	}

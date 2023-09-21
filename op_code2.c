@@ -101,7 +101,7 @@ void _mod(stack_t **stack, unsigned int line_number)
 
 	if ((*stack)->next->n == 0)
 	{
-		set_tok_error(div_err(line_number));
+		set_tok_err(div_err(line_number));
 		return;
 	}
 

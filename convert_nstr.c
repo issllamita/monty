@@ -70,7 +70,7 @@ int catch_nbs_len(unsigned int num, unsigned int base)
  *
  * Return: always void.
  */
-void fill_numbase_buff(unsigned int num, unsigned int base,
+void load_nbs_bf(unsigned int num, unsigned int base,
 			char *buff, int buff_size)
 {
 	int rem, i = buff_size - 1;

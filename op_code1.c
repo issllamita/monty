@@ -16,13 +16,11 @@ void _push(stack_t **stack, unsigned int line_number)
 		set_tok_err(malloc_err());
 		return;
 	}
-
 	if (op_toks[1] == NULL)
 	{
 		set_tok_err(noint_err(line_number));
 		return;
 	}
-
 	for (j = 0; op_toks[1][j]; j++)
 	{
 		if (op_toks[1][j] == '-' && j == 0)
@@ -34,7 +32,6 @@ void _push(stack_t **stack, unsigned int line_number)
 		}
 	}
 	new->n = atoi(op_toks[1]);
-
 	if (check_mode(*stack) == STACK)
 	{
 		temp = (*stack)->next;
@@ -114,8 +111,8 @@ void _swap(stack_t **stack, unsigned int line_number)
 	(*stack)->next->prev = temp;
 	if (temp->next)
 		temp->next->prev = (*stack)->next;
-	tmp->next = (*stack)->next;
-	tmp->prev = *stack;
+	temp->next = (*stack)->next;
+	temp->prev = *stack;
 	(*stack)->next = temp;
 }
 
@@ -128,7 +125,7 @@ void _pint(stack_t **stack, unsigned int line_number)
 {
 	if ((*stack)->next == NULL)
 	{
-		set_tok_err(pint_error(line_number));
+		set_tok_err(pint_err(line_number));
 		return;
 	}
 

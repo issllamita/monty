@@ -64,7 +64,7 @@ void set_tok_err(int err_code)
 		new_toks[i] = op_toks[i];
 		i++;
 	}
-	exit_str = get_int(err_code);
+	exit_str = catch_int(err_code);
 	if (!exit_str)
 	{
 		free(new_toks);

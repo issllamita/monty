@@ -18,7 +18,7 @@ int exec_monty(FILE *op_cipher)
 	if (init_stack(&stack) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 
-	while (getline(&line, &len, script_fd) != -1)
+	while (getline(&line, &len, op_cipher) != -1)
 	{
 		line_number++;
 		op_toks = sepstr(line, DELIMS);
@@ -34,17 +34,17 @@ int exec_monty(FILE *op_cipher)
 			free_toks();
 			continue;
 		}
-		op_func = get_op_func(op_toks[0]);
+		op_func = catch_opc_fn(op_toks[0]);
 		if (op_func == NULL)
 		{
 			free_stack(&stack);
-			exit_status = unknown_op_err(op_toks[0], line_number);
+			exit_status = unknown_opc_err(op_toks[0], line_number);
 			free_toks();
 			break;
 		}
 		prev_tok_len = tok_arr_len();
 		op_func(&stack, line_number);
-		if (token_arr_len() != prev_tok_len)
+		if (tok_arr_len() != prev_tok_len)
 		{
 			if (op_toks && op_toks[prev_tok_len])
 				exit_status = atoi(op_toks[prev_tok_len]);
@@ -103,6 +103,45 @@ int empty_line(char *line, char *delims)
 	}
 
 	return (1);
+}
+
+/**
+ * catch_opc_fn - Matches an opcode with its corresponding function.
+ * @opcode: The opcode to match.
+ *
+ * Return: A pointer to the corresponding function.
+ */
+void (*catch_opc_fn(char *opcode))(stack_t**, unsigned int)
+{
+	instruction_t op_funcs[] = {
+		{"push", _push},
+		{"pall", _pall},
+		{"pint", _pint},
+		{"pop", _pop},
+		{"swap", _swap},
+		{"add", _add},
+		{"nop", _nop},
+		{"sub", _sub},
+		{"div", _div},
+		{"mul", _mul},
+		{"mod", _mod},
+		{"pchar", _pchar},
+		{"pstr", _pstr},
+		{"rotl", _rotl},
+		{"rotr", _rotr},
+		{"stack", _stack},
+		{"queue", _queue},
+		{NULL, NULL}
+	};
+	int i;
+
+	for (i = 0; op_funcs[i].opcode; i++)
+	{
+		if (strcmp(opcode, op_funcs[i].opcode) == 0)
+			return (op_funcs[i].f);
+	}
+
+	return (NULL);
 }
 
 /**

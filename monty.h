@@ -50,6 +50,7 @@ typedef struct instruction_s
 int exec_monty(FILE *op_cipher);
 unsigned int tok_arr_len(void);
 int empty_line(char *line, char *delims);
+void (*catch_opc_fn(char *opcode))(stack_t**, unsigned int);
 void free_toks(void);
 
 /*...................... prime_inter.c................... */
@@ -72,7 +73,8 @@ char *catch_int(int num);
 unsigned int _abs(int);
 int _delim(char ch, char *delims);
 int catch_nbs_len(unsigned int nbs, unsigned int base);
-void load_nbs_bf(unsigned int nbs, unsigned int base, char *buff, int buff_size);
+void load_nbs_bf(unsigned int nbs, unsigned int base,
+		char *buff, int buff_size);
 
 /*...................... op_code1.c...................... */
 
@@ -117,6 +119,6 @@ int pop_err(unsigned int line_number);
 int pint_err(unsigned int line_number);
 int div_err(unsigned int line_number);
 int pchar_err(unsigned int line_number, char *flag);
-int brief_stack_err(unsigned int line_number, char *opc);
+int brief_stack_err(unsigned int line_number, char *opr);
 
 #endif /* __MONTY_H__ */

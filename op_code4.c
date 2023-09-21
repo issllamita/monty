@@ -40,11 +40,11 @@ void _rotr(stack_t **stack, unsigned int line_number)
 
 	top = (*stack)->next;
 	bottom = (*stack)->next;
-	while (->next != NULL)
+	while (bottom->next != NULL)
 		bottom = bottom->next;
 
 	bottom->prev->next = NULL;
-	(*stack)->next = ground;
+	(*stack)->next = bottom;
 	bottom->prev = *stack;
 	bottom->next = top;
 	top->prev = bottom;
