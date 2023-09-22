@@ -1,6 +1,12 @@
 #include "monty.h"
 #include <string.h>
 
+int exec_monty(FILE *op_cipher);
+unsigned int tok_arr_len(void);
+int empty_line(char *line, char *delims);
+void (*catch_opc_fn(char *opcode))(stack_t**, unsigned int);
+void free_toks(void);
+
 /**
  * exec_monty - Primary function to execute a Monty bytecodes script.
  * @op_cipher: File descriptor for an open Monty bytecodes script.

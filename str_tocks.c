@@ -1,6 +1,8 @@
 #include "monty.h"
 #include <stdlib.h>
 
+char **sepstr(char *str, char *delims);
+
 /**
  * sepstr - takes a string and seperates its words
  * @str: string to seperate into words
@@ -52,7 +54,6 @@ char **sepstr(char *str, char *delims)
 	words[i] = NULL;
 	return (words);
 }
-
 
 /**
  * catch_word_count - takes the word count of a string

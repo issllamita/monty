@@ -1,10 +1,17 @@
 #include "monty.h"
 
+void _push(stack_t **stack, unsigned int line_number);
+void _pop(stack_t **stack, unsigned int line_number);
+void _pall(stack_t **stack, unsigned int line_number);
+void _swap(stack_t **stack, unsigned int line_number);
+void _pint(stack_t **stack, unsigned int line_number);
+
 /**
  * _push - Pushes a value to a stack_t linked list.
  * @stack: A pointer to the top mode node of a stack_t linked list.
  * @line_number: current working line number of a Monty bytecodes file.
  */
+
 void _push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp, *new = malloc(sizeof(stack_t));
